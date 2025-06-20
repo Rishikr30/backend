@@ -1,4 +1,3 @@
-
 /*
 const { createServer } = require('node:http');
 
@@ -16,6 +15,8 @@ server.listen(port, hostname, () => {
 });
 */
 
+
+/*
 const express = require('express')
 const app = express()
 const port = 3000
@@ -63,3 +64,52 @@ app.get('/projects', (req, res) => {
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
+*/
+
+
+
+
+
+
+//Response, Request and Routers in Express
+
+const express = require('express')
+const blog = require('./routes/blog')
+const shop = require('./routes/shop')
+
+// ...
+
+
+
+
+const app = express()
+const port = 3000
+
+app.use(express.static('public'))
+app.use('/blog', blog)
+app.use('/shop', shop)
+
+//app.get or app.post or app.put or app.delete(path, handler)
+app.get('/', (req, res) => {
+    console.log("hey it's a get request");
+
+    res.send('Rishi Kumar get me')
+})
+
+app.post('/', (req, res) => {
+    console.log("hey it's a post request");
+    res.send("hello world post")
+})
+
+// app.get("/index",(req, res) => {
+//     console.log("hey it's a get request");
+//     res.sendFile("templates/index.html")
+// })
+// app.get("/api",(req, res) => {
+//     console.log("hey it's a json");
+//     res.json({a: 1, b: 2, c: 3, d: 4})
+// })
+
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+}) 
